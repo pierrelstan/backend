@@ -27,6 +27,29 @@ console.log(error)
 })
 
 
+// create a recipe
+app.post('/api/recipes',(req,res,next)=> {
+  const recipe = new Recipe({
+      title: req.body.title,
+      ingredients: req.body.ingredients,
+      instructions: req.body.instructions,
+      difficulty: req.body.difficulty,
+      time: req.body.time,
+      _id: req.body.id
+  });
+
+  recipe.save().then(()=> {
+ res.status(201).json({
+  message: 'Post saved successfully !'
+ })
+  }).catch((error)=> {
+      res.status(404).json({
+        error: error
+      })
+    })
+})
+
+
 
 
 module.exports = app;
