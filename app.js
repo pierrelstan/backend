@@ -71,6 +71,27 @@ app.get('/api/recipes/:id',(req, res, next)=>{
   });
 
 
+// Edit  a recipe
+  app.put('/api/recipes/:id',(req, res, next)=> {
+      const recipe = new Recipe({
+        _id: req.params.id,
+        title: req.body.title,
+        ingredients: req.body.ingredients,
+        instructions: req.body.instructions,
+        difficulty: req.body.difficulty,
+        time: req.body.time,
+      });
+      Recipe.updateOne({_id:req.params.id}, recipe).then(()=>{
+        res.status(201).json({
+          message: "Thing Update successfully!"
+        });
+      }).catch((error)=> {
+      res.status(400).json({
+        error:error
+      });
+      });
+      });
+
 
 
 
