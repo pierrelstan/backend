@@ -49,14 +49,7 @@ app.post('/api/recipes',(req,res,next)=> {
     })
 })
 
-// retuRN All recipes
-app.use('/api/recipes', (req, res, next)=> {
-  Recipe.find().then((recipe)=> {
- res.status(200).json(recipe)
-  }).catch((error)=> {
- error:error
-  });
- });
+
  // return one recipe
 app.get('/api/recipes/:id',(req, res, next)=>{
   Recipe.findOne({
@@ -108,7 +101,14 @@ app.get('/api/recipes/:id',(req, res, next)=>{
           });
           });
 
-
+// retuRN All recipes
+app.use('/api/recipes', (req, res, next)=> {
+  Recipe.find().then((recipe)=> {
+ res.status(200).json(recipe)
+  }).catch((error)=> {
+ error:error
+  });
+ });
 
 
 
